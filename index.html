@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💸 YOU'VE BEEN BLESSED 💸</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff, #ffff00);
+            background-size: 400% 400%;
+            animation: rainbow 3s ease infinite;
+            font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border: 8px dashed #ff00ff;
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 600px;
+            position: relative;
+            animation: shake 0.5s ease-in-out infinite;
+            box-shadow: 0 0 50px rgba(255, 0, 255, 0.5);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(-1deg); }
+            50% { transform: rotate(1deg); }
+        }
+
+        .title {
+            font-size: 2.5em;
+            color: #ff00ff;
+            text-shadow: 3px 3px 0 #00ffff, -3px -3px 0 #ffff00;
+            margin-bottom: 20px;
+            animation: pulse 0.5s ease infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+
+        .message {
+            font-size: 2em;
+            color: #333;
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(90deg, #ffd700, #ffed4a, #ffd700);
+            border-radius: 15px;
+            animation: glow 1s ease infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px #ffd700; }
+            to { box-shadow: 0 0 40px #ff6b6b, 0 0 60px #ffd700; }
+        }
+
+        .peasant-text {
+            font-size: 3em;
+            font-weight: bold;
+            color: #ff0000;
+            text-transform: uppercase;
+            animation: wobble 0.3s ease infinite;
+            display: block;
+            margin-top: 10px;
+        }
+
+        @keyframes wobble {
+            0%, 100% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+        }
+
+        .meme-img {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border-radius: 50%;
+            border: 5px solid #ffd700;
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .money-emoji {
+            font-size: 4em;
+            animation: bounce 0.6s ease infinite;
+            display: inline-block;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .marquee {
+            background: #000;
+            color: #0f0;
+            padding: 10px;
+            margin-top: 20px;
+            font-family: monospace;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .marquee span {
+            display: inline-block;
+            animation: scroll 10s linear infinite;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+
+        /* Falling money */
+        .money-rain {
+            position: fixed;
+            top: -50px;
+            font-size: 2em;
+            animation: fall linear infinite;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(720deg);
+            }
+        }
+
+        .deal-with-it {
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 3em;
+            animation: glasses 2s ease-in-out infinite;
+        }
+
+        @keyframes glasses {
+            0%, 100% { transform: translateY(-30px); opacity: 0; }
+            30%, 70% { transform: translateY(0); opacity: 1; }
+        }
+
+        .nyan-cat {
+            position: fixed;
+            bottom: 20px;
+            animation: nyan 8s linear infinite;
+            font-size: 3em;
+            z-index: 1000;
+        }
+
+        @keyframes nyan {
+            from { left: -100px; }
+            to { left: 110%; }
+        }
+
+        .explosion {
+            position: absolute;
+            font-size: 5em;
+            animation: explode 2s ease-in-out infinite;
+        }
+
+        .explosion:nth-child(1) { top: -30px; left: -30px; animation-delay: 0s; }
+        .explosion:nth-child(2) { top: -30px; right: -30px; animation-delay: 0.5s; }
+        .explosion:nth-child(3) { bottom: -30px; left: -30px; animation-delay: 1s; }
+        .explosion:nth-child(4) { bottom: -30px; right: -30px; animation-delay: 1.5s; }
+
+        @keyframes explode {
+            0%, 100% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.3); opacity: 1; }
+        }
+
+        .bottom-text {
+            margin-top: 30px;
+            font-size: 1.5em;
+            color: #ff00ff;
+        }
+
+        .impact-font {
+            font-family: Impact, sans-serif;
+            font-size: 1.8em;
+            color: white;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+            background: rgba(0,0,0,0.7);
+            padding: 10px 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .doge-speak {
+            position: absolute;
+            font-family: 'Comic Sans MS', cursive;
+            font-weight: bold;
+            animation: dogeFloat 3s ease-in-out infinite;
+        }
+
+        .doge-speak:nth-child(5) { top: 10%; left: 10%; color: #ff0000; animation-delay: 0s; }
+        .doge-speak:nth-child(6) { top: 20%; right: 10%; color: #00ff00; animation-delay: 0.5s; }
+        .doge-speak:nth-child(7) { bottom: 30%; left: 5%; color: #0000ff; animation-delay: 1s; }
+        .doge-speak:nth-child(8) { bottom: 20%; right: 5%; color: #ff00ff; animation-delay: 1.5s; }
+
+        @keyframes dogeFloat {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .click-me {
+            background: linear-gradient(45deg, #ff0000, #ff7700, #ffff00, #00ff00, #0000ff, #8b00ff);
+            background-size: 300% 300%;
+            animation: rainbow 2s ease infinite;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.5em;
+            font-family: 'Comic Neue', cursive;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            color: white;
+            text-shadow: 2px 2px 0 #000;
+            transition: transform 0.2s;
+        }
+
+        .click-me:hover {
+            transform: scale(1.1);
+        }
+
+        .airhorn {
+            font-size: 4em;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .airhorn:active {
+            transform: scale(1.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Doge speak floating around -->
+    <div class="doge-speak" style="font-size: 1.5em;">wow</div>
+    <div class="doge-speak" style="font-size: 1.8em;">such generous</div>
+    <div class="doge-speak" style="font-size: 1.3em;">very money</div>
+    <div class="doge-speak" style="font-size: 1.6em;">much wealth</div>
+
+    <div class="container">
+        <!-- Corner explosions -->
+        <span class="explosion">💥</span>
+        <span class="explosion">✨</span>
+        <span class="explosion">💫</span>
+        <span class="explosion">🔥</span>
+
+        <!-- Deal with it glasses -->
+        <span class="deal-with-it">😎</span>
+
+        <div class="title">
+            🎄 CONGRATULATIONS 🎄
+        </div>
+
+        <div class="money-emoji">💰</div>
+        <div class="money-emoji" style="animation-delay: 0.2s;">💵</div>
+        <div class="money-emoji" style="animation-delay: 0.4s;">💰</div>
+
+        <div class="message">
+            You have been selected to receive
+            <span class="peasant-text">FREE MONEY</span>
+        </div>
+
+        <div class="impact-font">
+            TAKE THE MONEY<br>YOU PEASANT
+        </div>
+
+        <!-- Spinning doge -->
+        <img src="https://i.imgur.com/Xk9MBmL.png" alt="doge" class="meme-img"
+             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🐕</text></svg>'">
+
+        <div class="subtitle">
+            *tips fedora* 🎩<br>
+            M'gift recipient
+        </div>
+
+        <div class="marquee">
+            <span>💰💰💰 THIS IS NOT A SCAM 💰💰💰 YOUR RICH RELATIVE HAS BESTOWED UPON YOU COLD HARD CASH 💰💰💰 NO STRINGS ATTACHED* 💰💰💰 *actually there are no strings this is just money 💰💰💰</span>
+        </div>
+
+        <button class="click-me" onclick="moreExplosions()">
+            🎉 CLICK FOR MORE MONEY 🎉
+        </button>
+
+        <div class="bottom-text">
+            <span class="airhorn" onclick="playAirhorn()" title="click me">📯</span>
+            <p>Merry Christmas, ya filthy animal 🎅</p>
+        </div>
+    </div>
+
+    <!-- Nyan cat at bottom -->
+    <div class="nyan-cat">🌈🐱</div>
+
+    <script>
+        // Create falling money
+        function createMoney() {
+            const emojis = ['💵', '💰', '💸', '🤑', '💲', '🪙'];
+            const money = document.createElement('div');
+            money.className = 'money-rain';
+            money.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            money.style.left = Math.random() * 100 + 'vw';
+            money.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(money);
+
+            setTimeout(() => money.remove(), 5000);
+        }
+
+        // Spawn money continuously
+        setInterval(createMoney, 300);
+
+        // More explosions button
+        function moreExplosions() {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    createMoney();
+                    const burst = document.createElement('div');
+                    burst.style.cssText = `
+                        position: fixed;
+                        font-size: 3em;
+                        left: ${Math.random() * 100}vw;
+                        top: ${Math.random() * 100}vh;
+                        pointer-events: none;
+                        animation: explode 1s ease-out forwards;
+                        z-index: 9999;
+                    `;
+                    burst.textContent = ['💥', '✨', '🎉', '🎊', '💫'][Math.floor(Math.random() * 5)];
+                    document.body.appendChild(burst);
+                    setTimeout(() => burst.remove(), 1000);
+                }, i * 50);
+            }
+
+            // Flash the background
+            document.body.style.animation = 'none';
+            document.body.offsetHeight; // Trigger reflow
+            document.body.style.background = '#fff';
+            setTimeout(() => {
+                document.body.style.background = '';
+                document.body.style.animation = 'rainbow 3s ease infinite';
+            }, 100);
+        }
+
+        // Airhorn sound (using Web Audio API for a simple horn-like sound)
+        function playAirhorn() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.frequency.setValueAtTime(400, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(200, audioContext.currentTime + 0.5);
+
+            gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.5);
+
+            // Add extra money burst when airhorn plays
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createMoney, i * 30);
+            }
+        }
+
+        // Konami code easter egg
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    // MEGA MODE
+                    document.body.innerHTML += '<div style="position:fixed;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.9);z-index:10000;"><h1 style="font-size:5em;color:#ffd700;font-family:Impact;text-shadow:0 0 50px #ffd700;">💰 UNLIMITED MONEY ACTIVATED 💰</h1></div>';
+                    for (let i = 0; i < 100; i++) {
+                        setTimeout(createMoney, i * 20);
+                    }
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        // Console easter egg
+        console.log('%c💰 MONEY PRINTER GO BRRRRR 💰', 'font-size: 30px; color: gold; text-shadow: 2px 2px black;');
+        console.log('%cHappy Holidays from your generous benefactor!', 'font-size: 16px; color: green;');
+    </script>
+</body>
+</html>
