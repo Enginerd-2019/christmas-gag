@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Have Been Selected</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #1a0a2e 100%);
+            font-family: 'Cormorant Garamond', serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Floating L particles */
+        .particle {
+            position: fixed;
+            font-size: 24px;
+            color: #ffd700;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+            text-shadow: 0 0 10px #ffd700;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .scroll-container {
+            position: relative;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .scroll {
+            background: linear-gradient(180deg,
+                #f4e4bc 0%,
+                #f9f0d9 5%,
+                #f9f0d9 95%,
+                #f4e4bc 100%
+            );
+            border-radius: 10px;
+            padding: 60px 50px;
+            position: relative;
+            box-shadow:
+                0 0 50px rgba(255, 215, 0, 0.3),
+                inset 0 0 100px rgba(139, 69, 19, 0.1);
+        }
+
+        .scroll::before,
+        .scroll::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110%;
+            height: 40px;
+            background: linear-gradient(90deg,
+                #8b4513 0%,
+                #d4a574 20%,
+                #deb887 50%,
+                #d4a574 80%,
+                #8b4513 100%
+            );
+            border-radius: 50%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .scroll::before {
+            top: -20px;
+        }
+
+        .scroll::after {
+            bottom: -20px;
+        }
+
+        .wax-seal {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 30% 30%, #c41e3a, #8b0000);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            color: #ffd700;
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.4),
+                inset 0 -5px 15px rgba(0,0,0,0.3),
+                inset 0 5px 15px rgba(255,255,255,0.2);
+            animation: sealPulse 3s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        @keyframes sealPulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
+        }
+
+        .emblem {
+            text-align: center;
+            font-size: 4em;
+            margin-bottom: 10px;
+            animation: emblemFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+        }
+
+        @keyframes emblemFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            color: #4a2c0a;
+            font-size: 1.8em;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8b4513, transparent);
+        }
+
+        .divider span {
+            padding: 0 20px;
+            color: #8b4513;
+            font-size: 1.5em;
+        }
+
+        .decree-text {
+            font-size: 1.4em;
+            color: #2c1810;
+            text-align: center;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .ye-olde {
+            font-style: italic;
+            color: #5c3d2e;
+        }
+
+        .loser-box {
+            background: linear-gradient(135deg, #ffd700, #b8860b);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow:
+                0 10px 40px rgba(0,0,0,0.2),
+                inset 0 2px 10px rgba(255,255,255,0.5);
+            animation: goldGlow 2s ease-in-out infinite alternate;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .loser-box:not(.revealed):hover {
+            transform: scale(1.02);
+        }
+
+        .loser-box .click-hint {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            color: #4a2c0a;
+            font-style: italic;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+
+        @keyframes goldGlow {
+            from { box-shadow: 0 10px 40px rgba(0,0,0,0.2), 0 0 30px rgba(255, 215, 0, 0.3); }
+            to { box-shadow: 0 10px 40px rgba(0,0,0,0.2), 0 0 60px rgba(255, 215, 0, 0.6); }
+        }
+
+        .loser-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6em;
+            color: #2c1810;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .loser-message {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8em;
+            color: #1a0a00;
+            font-weight: 700;
+        }
+
+        .condescending {
+            font-style: italic;
+            color: #5c3d2e;
+            font-size: 1.1em;
+            margin: 25px 0;
+            padding: 15px;
+            border-left: 4px solid #8b4513;
+            background: rgba(139, 69, 19, 0.05);
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 30px;
+            font-style: italic;
+            color: #4a2c0a;
+        }
+
+        .signature-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3em;
+            color: #2c1810;
+            margin-top: 5px;
+        }
+
+        .fine-print {
+            font-size: 0.8em;
+            color: #8b7355;
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .trumpets {
+            position: fixed;
+            font-size: 3em;
+            animation: trumpetBlast 4s ease-in-out infinite;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .trumpets.left {
+            left: 20px;
+            top: 30%;
+            transform: scaleX(-1);
+        }
+
+        .trumpets.right {
+            right: 20px;
+            top: 30%;
+        }
+
+        @keyframes trumpetBlast {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        .trumpets.left {
+            animation: trumpetBlastLeft 4s ease-in-out infinite;
+        }
+
+        @keyframes trumpetBlastLeft {
+            0%, 100% { transform: scaleX(-1) rotate(-10deg); }
+            50% { transform: scaleX(-1) rotate(10deg); }
+        }
+
+        .fanfare-text {
+            position: fixed;
+            font-family: 'Cinzel', serif;
+            font-size: 1.5em;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            pointer-events: none;
+            animation: fanfareFloat 3s ease-out forwards;
+            z-index: 1000;
+        }
+
+        @keyframes fanfareFloat {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(1.5);
+            }
+        }
+
+        .accept-button {
+            display: block;
+            margin: 20px auto;
+            background: linear-gradient(135deg, #4a2c0a, #8b4513);
+            color: #ffd700;
+            border: 2px solid #ffd700;
+            padding: 15px 40px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .accept-button:hover {
+            background: linear-gradient(135deg, #8b4513, #d4a574);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .l-shower {
+            position: fixed;
+            font-size: 2.5em;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: lFall 3s ease-in forwards;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes lFall {
+            0% {
+                transform: translateY(-50px) rotateZ(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotateZ(720deg);
+                opacity: 0;
+            }
+        }
+
+        .royal-blessing {
+            text-align: center;
+            color: #8b4513;
+            font-size: 0.9em;
+            margin-top: 15px;
+            opacity: 0.8;
+        }
+
+        /* Decorative corners */
+        .corner {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            opacity: 0.6;
+        }
+
+        .corner-tl { top: 30px; left: 20px; }
+        .corner-tr { top: 30px; right: 20px; transform: scaleX(-1); }
+        .corner-bl { bottom: 30px; left: 20px; transform: scaleY(-1); }
+        .corner-br { bottom: 30px; right: 20px; transform: scale(-1); }
+
+        .corner svg {
+            width: 100%;
+            height: 100%;
+            fill: #8b4513;
+        }
+
+        .sub-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            color: #8b4513;
+            font-size: 1.1em;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .benefits-list {
+            text-align: left;
+            margin: 20px auto;
+            max-width: 400px;
+            font-size: 1.1em;
+            color: #2c1810;
+        }
+
+        .benefits-list li {
+            margin: 10px 0;
+            padding-left: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .scroll {
+                padding: 40px 25px;
+            }
+            .header {
+                font-size: 1.4em;
+                letter-spacing: 4px;
+            }
+            .loser-message {
+                font-size: 2em;
+            }
+            .trumpets {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Trumpets -->
+    <div class="trumpets left" onclick="playFanfare()">🎺</div>
+    <div class="trumpets right" onclick="playFanfare()">🎺</div>
+
+    <div class="scroll-container">
+        <div class="scroll">
+            <!-- Decorative corners -->
+            <div class="corner corner-tl">
+                <svg viewBox="0 0 100 100"><path d="M0,50 Q0,0 50,0 L50,10 Q10,10 10,50 Z"/></svg>
+            </div>
+            <div class="corner corner-tr">
+                <svg viewBox="0 0 100 100"><path d="M0,50 Q0,0 50,0 L50,10 Q10,10 10,50 Z"/></svg>
+            </div>
+            <div class="corner corner-bl">
+                <svg viewBox="0 0 100 100"><path d="M0,50 Q0,0 50,0 L50,10 Q10,10 10,50 Z"/></svg>
+            </div>
+            <div class="corner corner-br">
+                <svg viewBox="0 0 100 100"><path d="M0,50 Q0,0 50,0 L50,10 Q10,10 10,50 Z"/></svg>
+            </div>
+
+            <div class="emblem">🏆</div>
+
+            <div class="header">Official Certificate</div>
+            <div class="sub-title">~ The Most Prestigious Order ~</div>
+
+            <div class="divider"><span>⚜️</span></div>
+
+            <p class="decree-text">
+                <span class="ye-olde">Congratulations!</span><br><br>
+                After an exhaustive review of candidates from around the globe,
+                <strong>The Grand Council of Excellence</strong> has unanimously
+                selected <em>YOU</em> for induction into our most elite order...
+            </p>
+
+            <div class="loser-box" id="revealBox" onclick="revealLoser()">
+                <div class="loser-title">You Are Officially</div>
+                <div class="loser-message"><span class="click-hint">(click here for details)</span></div>
+            </div>
+
+            <p class="condescending">
+                "Out of billions of applicants, your unique combination of
+                <em>questionable life choices</em> and <em>clicking random links on the internet</em>
+                has earned you this distinguished honor."
+            </p>
+
+            <p class="decree-text" style="font-size: 1.1em;">
+                As a certified member, you are now entitled to:
+            </p>
+
+            <ul class="benefits-list">
+                <li>Taking L's with official documentation</li>
+                <li>A lifetime supply of self-reflection</li>
+                <li>The privilege of showing this to your friends</li>
+                <li>An exclusive seat at the "Why Did I Click That" table</li>
+            </ul>
+
+            <button class="accept-button" onclick="acceptFate()">
+                Accept My L
+            </button>
+
+            <div class="divider"><span>⚜️</span></div>
+
+            <div class="signature">
+                With sincere condolences,
+                <div class="signature-name">~ The Council of Winners ~</div>
+            </div>
+
+            <p class="fine-print">
+                *By viewing this page, you have already accepted your status.
+                No refunds. No appeals. No exceptions.
+            </p>
+
+            <p class="royal-blessing">
+                Better luck next time (there won't be one)
+            </p>
+
+            <!-- Wax seal -->
+            <div class="wax-seal" id="waxSeal">?</div>
+        </div>
+    </div>
+
+    <script>
+        let revealed = false;
+        let particleInterval = null;
+
+        // Create floating L particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.textContent = 'L';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(particle);
+
+            setTimeout(() => particle.remove(), 12000);
+        }
+
+        // Start particles only after reveal
+        function startParticles() {
+            if (particleInterval) return;
+            particleInterval = setInterval(createParticle, 500);
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createParticle, i * 200);
+            }
+        }
+
+        // Reveal the loser message
+        function revealLoser() {
+            if (revealed) return;
+            revealed = true;
+
+            const box = document.getElementById('revealBox');
+            box.classList.add('revealed');
+            box.style.cursor = 'default';
+
+            const title = box.querySelector('.loser-title');
+            const message = box.querySelector('.loser-message');
+
+            title.textContent = 'You Are Officially A';
+            message.innerHTML = 'LOSER';
+
+            // Change wax seal
+            document.getElementById('waxSeal').textContent = 'L';
+
+            // Play sad trombone
+            playSadTrombone();
+
+            // Start the L particles
+            startParticles();
+
+            // Shower some L's for dramatic effect
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => createL(), i * 80);
+            }
+        }
+
+        // Sad trombone notes (descending)
+        function playSadTrombone() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+            const notes = [
+                { freq: 311.13, time: 0, duration: 0.3 },     // Eb4
+                { freq: 293.66, time: 0.35, duration: 0.3 },  // D4
+                { freq: 277.18, time: 0.7, duration: 0.3 },   // C#4
+                { freq: 261.63, time: 1.05, duration: 0.8 },  // C4 (long)
+            ];
+
+            notes.forEach(note => {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.type = 'sawtooth';
+                oscillator.frequency.setValueAtTime(note.freq, audioContext.currentTime + note.time);
+
+                gainNode.gain.setValueAtTime(0.15, audioContext.currentTime + note.time);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + note.time + note.duration);
+
+                oscillator.start(audioContext.currentTime + note.time);
+                oscillator.stop(audioContext.currentTime + note.time + note.duration);
+            });
+        }
+
+        // Fanfare function
+        function playFanfare() {
+            if (revealed) {
+                playSadTrombone();
+            } else {
+                // Play hopeful fanfare before reveal
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const notes = [523.25, 659.25, 783.99, 1046.50];
+                notes.forEach((freq, i) => {
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    oscillator.type = 'triangle';
+                    oscillator.frequency.setValueAtTime(freq, audioContext.currentTime + i * 0.15);
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime + i * 0.15);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + i * 0.15 + 0.5);
+                    oscillator.start(audioContext.currentTime + i * 0.15);
+                    oscillator.stop(audioContext.currentTime + i * 0.15 + 0.5);
+                });
+            }
+
+            // Show fanfare text
+            const phrases = revealed ? [
+                "LOSER!",
+                "BIG L!",
+                "TRAGIC!",
+                "YIKES!",
+                "OOF!"
+            ] : [
+                "EXCITING!",
+                "SPECIAL!",
+                "WOW!",
+                "AMAZING!",
+                "GLORIOUS!"
+            ];
+
+            const text = document.createElement('div');
+            text.className = 'fanfare-text';
+            text.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+            text.style.left = Math.random() * 60 + 20 + '%';
+            text.style.top = Math.random() * 40 + 20 + '%';
+            document.body.appendChild(text);
+
+            setTimeout(() => text.remove(), 3000);
+
+            // Shower some L's (only after reveal)
+            if (revealed) {
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => createL(), i * 100);
+                }
+            }
+        }
+
+        // L shower
+        function createL() {
+            const l = document.createElement('div');
+            l.className = 'l-shower';
+            l.textContent = 'L';
+            l.style.left = Math.random() * 100 + 'vw';
+            l.style.top = '-50px';
+            document.body.appendChild(l);
+
+            setTimeout(() => l.remove(), 3000);
+        }
+
+        // Accept button function
+        function acceptFate() {
+            playSadTrombone();
+
+            // Show acceptance message
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(26, 10, 46, 0.95);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                animation: fadeIn 0.5s ease;
+            `;
+            overlay.innerHTML = `
+                <div style="font-size: 5em; margin-bottom: 20px;">🏆</div>
+                <div style="font-family: 'Cinzel', serif; font-size: 2.5em; color: #ffd700; text-align: center; padding: 20px;">
+                    L Accepted
+                </div>
+                <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.3em; color: #d4a574; text-align: center; padding: 20px; max-width: 500px;">
+                    Your membership has been confirmed.<br><br>
+                    <em>Welcome to the club. There are... a lot of us, actually.</em>
+                </div>
+                <div style="font-size: 4em; margin-top: 30px;">L</div>
+                <div style="font-family: 'Cormorant Garamond', serif; font-size: 1em; color: #8b7355; margin-top: 20px; text-align: center;">
+                    Screenshot this. You earned it.
+                </div>
+                <button onclick="this.parentElement.remove()" style="
+                    margin-top: 30px;
+                    background: transparent;
+                    border: 2px solid #ffd700;
+                    color: #ffd700;
+                    padding: 15px 40px;
+                    font-family: 'Cinzel', serif;
+                    font-size: 1em;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                " onmouseover="this.style.background='#ffd700';this.style.color='#1a0a2e'"
+                   onmouseout="this.style.background='transparent';this.style.color='#ffd700'">
+                    Cope & Close
+                </button>
+            `;
+            document.body.appendChild(overlay);
+
+            // Massive L shower
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => createL(), i * 50);
+            }
+        }
+
+        // Console message
+        console.log('%c🏆 OFFICIAL NOTICE 🏆', 'font-size: 20px; color: gold; background: purple; padding: 10px;');
+        console.log('%cEven inspecting the console won\'t save you. L.', 'font-size: 14px; color: #d4a574;');
+    </script>
+</body>
+</html>
